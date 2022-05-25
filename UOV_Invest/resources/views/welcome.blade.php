@@ -80,9 +80,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                <a href="{{route('consumirapi')}}">Consumir api</a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

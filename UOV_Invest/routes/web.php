@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/consumirapi', 'investController@index');
+
+Route::get ('/consumirapi',
+           ['as' => 'consumirapi',
+            'uses'=>'investController@index']);
