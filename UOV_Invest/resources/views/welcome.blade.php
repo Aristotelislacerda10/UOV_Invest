@@ -80,7 +80,7 @@
             @endif
 
             <div class="content">
-                <a href="{{route('consumirapi')}}">Consumir api</a>
+                <a href="{{route('invest.ConsultaBolsa')}}">Consumir api</a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

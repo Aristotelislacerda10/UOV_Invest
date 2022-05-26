@@ -19,6 +19,6 @@ Route::get('/', function () {
 
 // Route::get('/consumirapi', 'investController@index');
 
-Route::get ('/consumirapi',
-           ['as' => 'consumirapi',
+Route::get ('invest/ConsultaBolsa',
+           ['as' => 'invest.ConsultaBolsa',
             'uses'=>'investController@index']);

@@ -21,7 +21,8 @@ class InvestController extends Controller
        $response = Http::withOptions(['verify' => false])->get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo');
 
        // dd($response->json());
-        dd($response->body());
+       // dd($response->body());
+        return view('invest.ConsultaBolsa');
       
     }
 }
