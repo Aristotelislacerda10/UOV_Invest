@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get ('invest/ConsultaBolsa',
            ['as' => 'invest.ConsultaBolsa',
             'uses'=>'investController@index']);
+
+Route::post ('invest/RealizaConsulta',
+            ['as' => 'invest.RealizaConsulta',
+             'uses'=>'investController@RealizaConsulta']);            

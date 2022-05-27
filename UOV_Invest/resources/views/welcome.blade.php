@@ -79,19 +79,14 @@
                 </div>
             @endif
 
-            <div class="content">
-                <a href="{{route('invest.ConsultaBolsa')}}">Consumir api</a>
+            <div class="col-md-4">
+                <a class="btn btn-sm btn-primary" href="{{route('invest.ConsultaBolsa')}}">PaginaInicial</a>    
+            </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="col-md-4">
+                <a class="btn btn-sm btn-primary" href="{{route('invest.RealizaConsulta')}}">RealizaConsulta</a>    
+            </div>
+                
             </div>
         </div>
     </body>

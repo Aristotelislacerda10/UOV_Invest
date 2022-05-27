@@ -11,18 +11,21 @@ class InvestController extends Controller
     //     $this->middleware('auth');
     // }
     /*----------------------------------------------------------------------------*/ 
+
     public function index(){
-
-       // $response = Http::withBasicAuth('usuario','senha')->get('url');  
-       
-      // $response = Http::get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=B45NKBK0LP76EMSH'); 
-     //  $response = request('GET', 'https://somewebsite.com', ['verify' => false]);
-
-       $response = Http::withOptions(['verify' => false])->get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo');
-
-       // dd($response->json());
-       // dd($response->body());
         return view('invest.ConsultaBolsa');
       
     }
+
+    public function RealizaConsulta(Request $request){
+        // Ações da bolsa
+        // $response = Http::withOptions(['verify' => false])->get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo');
+        
+            $TextoRequisicao = 'https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=' . $request->get('symbol') . '&market=BRL&interval=5min&apikey=B45NKBK0LP76EMSH';
+         $response = Http::withOptions(['verify' => false])->get($TextoRequisicao);
+         dd($response->json());
+         // dd($response->body());
+          return view('invest.ConsultaBolsa');
+        
+      }
 }
