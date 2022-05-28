@@ -170,6 +170,29 @@
             </nav>
             <!-- Navbar End -->
 
+            <!-- INICIO DAS INFORMAÇÕES INICIAIS -->
+            <div class="container-fluid pt-4 px-4">
+                <form class="container-fluid" action="{{route('invest.RealizaConsulta')}}" method="POST">
+                    {{csrf_field() }}
+
+                    <div class="bg-secondary text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-6">
+                            <h6 class="mb-0">Filtro de Consulta</h6>
+                            
+                            <div class="mb-3">
+                                <input class="form-control" type="text" id="symbol" name="symbol" placeholder="Simbolo">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Consultar</button>
+                              </div>
+                        </div>                                                          
+                    </div>
+                    
+                </form>    
+                
+            </div>
+            <!-- FIM DAS INFORMAÇÕES INICIAIS -->
+
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
@@ -178,7 +201,7 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
+                                <p class="mb-2">Valor atual</p>
                                 <h6 class="mb-0">$1234</h6>
                             </div>
                         </div>
@@ -187,7 +210,7 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
+                                <p class="mb-2">Valor Anterior</p>
                                 <h6 class="mb-0">$1234</h6>
                             </div>
                         </div>
