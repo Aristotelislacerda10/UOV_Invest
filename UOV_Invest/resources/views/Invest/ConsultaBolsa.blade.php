@@ -266,51 +266,36 @@
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
-                <form class="container-fluid" action="{{route('invest.RealizaConsulta')}}" method="POST">
-                    {{csrf_field() }}
-
-                    <div class="bg-secondary text-center rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">CryptoMoedas</h6>
-                            
-                            <div class="mb-3">
-                                <input class="form-control" type="text" id="symbol" name="symbol" placeholder="Simbolo">
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-striped mb-0">
-                                <thead>
-                                    <tr class="text-white">
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Invoice</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>01 Jan 2045</td>
-                                        <td>INV-0123</td>
-                                        <td>Jhon Doe</td>
-                                        <td>$123</td>
-                                        <td>Paid</td>
-                                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-group">
-                              <button class="btn btn-primary">Consultar</button>
-                            </div>
-                        </div> 
-                        
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">CryptoMoedas</h6>
                     </div>
-                    
-                </form>    
-                
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Data/hora</th>
+                                    <th scope="col">Abertura</th>
+                                    <th scope="col">Fechamento Anterior</th>
+                                    <th scope="col">mais alto</th>
+                                    <th scope="col">mais baixo</th>
+                                    <th scope="col">volume</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($ArrayTableCotacaoCrypto as $ArrayTableCotacaoCryptos)
+                                    <tr>
+                                        <td>{{date('d/m/Y',  strtotime($ArrayTableCotacaoCryptos->datahora))}}</td>
+                                        <td>{{number_format($ArrayTableCotacaoCryptos->open, 2, ',', '.')}}</td>
+                                        <td>{{number_format($ArrayTableCotacaoCryptos->close, 2, ',', '.')}}</td>
+                                        <td>{{number_format($ArrayTableCotacaoCryptos->high, 2, ',', '.')}}</td>
+                                        <td>{{number_format($ArrayTableCotacaoCryptos->low, 2, ',', '.')}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>                       
+                </div>                
             </div>
             <!-- Recent Sales End -->
 
