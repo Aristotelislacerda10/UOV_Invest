@@ -283,13 +283,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($ArrayTableCotacaoCrypto as $ArrayTableCotacaoCryptos)
-                                    <tr>
-                                        <td>{{date('d/m/Y',  strtotime($ArrayTableCotacaoCryptos->datahora))}}</td>
-                                        <td>{{number_format($ArrayTableCotacaoCryptos->open, 2, ',', '.')}}</td>
-                                        <td>{{number_format($ArrayTableCotacaoCryptos->close, 2, ',', '.')}}</td>
-                                        <td>{{number_format($ArrayTableCotacaoCryptos->high, 2, ',', '.')}}</td>
-                                        <td>{{number_format($ArrayTableCotacaoCryptos->low, 2, ',', '.')}}</td>
+                                @foreach($CotacaoResponse as $CotacaoResponses)
+                                    <tr>                                  
+                                        <td>{{date('Y-m-d H:i:s',  strtotime(key($CotacaoResponse)))}}</td>
+                                        <td>{{number_format($CotacaoResponses['1. open'], 2, ',', '.')}}</td>
+                                        <td>{{number_format($CotacaoResponses['4. close'], 2, ',', '.')}}</td>
+                                        <td>{{number_format($CotacaoResponses['2. high'], 2, ',', '.')}}</td>
+                                        <td>{{number_format($CotacaoResponses['3. low'], 2, ',', '.')}}</td>
+                                        <td>{{number_format($CotacaoResponses['5. volume'], 2, ',', '.')}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
