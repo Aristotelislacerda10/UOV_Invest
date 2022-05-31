@@ -19,10 +19,13 @@ class InvestController extends Controller
         $CotacaoResponse["3. low"]    = 0;
         $CotacaoResponse["4. close"]  = 0;
         $CotacaoResponse["5. volume"] = 0;
+        $ArrayValorFechado[]          = 0;
+        $ArrayMaisAlto[]              = 0;
+        $ArrayMaisBaixo[]             = 0;
 
       //  dd($ArrayTableCotacaoCrypto);
 
-        return view('invest.ConsultaBolsa',compact('CotacaoResponse'));
+       return view('invest.ConsultaBolsa',compact('CotacaoResponse','ArrayValorFechado','ArrayMaisAlto','ArrayMaisBaixo'));
       
     }
 
@@ -42,21 +45,15 @@ class InvestController extends Controller
 
        // dd($CabecalhoResponse["3. Digital Currency Name"]);
 
-        // foreach ($CotacaoResponse as $CotacaoResponses) {
-        //     $ArrayTableCotacaoCrypto["datahora"]   = key($CotacaoResponse);
-        //     $ArrayTableCotacaoCrypto["open"]   = $CotacaoResponses["1. open"];
-        //     $ArrayTableCotacaoCrypto["high"]   = $CotacaoResponses["2. high"];
-        //     $ArrayTableCotacaoCrypto["low"]    = $CotacaoResponses["3. low"];
-        //     $ArrayTableCotacaoCrypto["close"]  = $CotacaoResponses["4. close"];
-        //     $ArrayTableCotacaoCrypto["volume"] = $CotacaoResponses["5. volume"];
-        //    // dd($ArrayTableCotacaoCrypto);
-        //    $ArrayTableCotacaoCrypto[] = $ArrayTableCotacaoCrypto;
+        foreach ($CotacaoResponse as $CotacaoResponses) {
+           $ArrayValorFechado[]  = $CotacaoResponses["4. close"];
+           $ArrayMaisAlto[]     = $CotacaoResponses["2. high"];
+           $ArrayMaisBaixo[]     = $CotacaoResponses["3. low"];
      
-        // }
-
+        }
        //  dd($ObjectResponse["Meta Data"]);
        //   dd(($CotacaoResponse));
-          return view('invest.ConsultaBolsa',compact('CotacaoResponse'));
+          return view('invest.ConsultaBolsa',compact('CotacaoResponse','ArrayValorFechado','ArrayMaisAlto','ArrayMaisBaixo'));
         
       }
 }

@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Projeto usa o void invest</title>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('chart.js/chart.js') }}"></script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -88,8 +91,12 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                <form class="d-none d-md-flex ms-4" action="{{route('invest.RealizaConsulta')}}" method="POST">
+                    {{csrf_field()}}
+                    <input class="form-control bg-dark border-0" id="symbol" name="symbol" type="search" placeholder="Simbolo">
+                    <div class="form-group">
+                        <button class="btn btn-primary">Consultar</button>
+                    </div>
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -131,68 +138,10 @@
                             <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </nav>
             <!-- Navbar End -->
-
-            <!-- INICIO DAS INFORMAÇÕES INICIAIS -->
-            <div class="container-fluid pt-4 px-4">
-                <form class="container-fluid" action="{{route('invest.RealizaConsulta')}}" method="POST">
-                    {{csrf_field() }}
-
-                    <div class="bg-secondary text-center rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-6">
-                            <h6 class="mb-0">Filtro de Consulta</h6>
-                            
-                            <div class="mb-3">
-                                <input class="form-control" type="text" id="symbol" name="symbol" placeholder="Simbolo">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary">Consultar</button>
-                              </div>
-                        </div>                                                          
-                    </div>
-                    
-                </form>    
-                
-            </div>
-            <!-- FIM DAS INFORMAÇÕES INICIAIS -->
-
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
@@ -241,22 +190,14 @@
             <!-- Sales Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
+                    <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Worldwide Sales</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Salse & Revenue</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
+                            <canvas id="myChart"></canvas>
+                        
                         </div>
                     </div>
                 </div>
@@ -460,6 +401,60 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+         const ctx2 = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels:  [1,2,3,4,5,6,7,8,9,10], 
+                datasets: [{
+                label: "Fechamento",
+                type: 'line',
+                backgroundColor: "rgba(50,205,50,0.7)",
+                borderColor: "rgba(33,94,33,0.9)",
+                borderWidth: 2,
+                hoverBackgroundColor: "rgba(35,142,35,0.7)",
+                hoverBorderColor: "rgba(33,94,33,1)",
+                data: [{{implode(',',$ArrayValorFechado)}}]
+            }, {
+                label: "mais baixo",
+                type: 'line',
+                backgroundColor: "rgba(255,0,0,0.7)",
+                borderColor: "rgba(140,23,23,0.9)",
+                borderWidth: 2,
+                hoverBackgroundColor: "rgba(140,23,23,0.9)",
+                hoverBorderColor: "rgba(140,23,23,1)",
+                data: [{{implode(',',$ArrayMaisBaixo)}}]
+            }, {
+                label: "mais alto",
+                type: 'line',
+                backgroundColor: "rgba(56,176,222,0.8)",
+                borderColor: "rgba(56,176,222,0.9)",
+                borderWidth: 2,
+                hoverBackgroundColor: "rgba(56,176,222,0.9)",
+                hoverBorderColor: "rgba(56,176,222,1)",
+                data: [{{implode(',',$ArrayMaisAlto)}}]
+            }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'Histórico mensal de gastos'
+                }
+            }
+            }
+        });
+       });
+     </script>
 </body>
 
 </html>
