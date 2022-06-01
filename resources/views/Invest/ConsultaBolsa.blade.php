@@ -193,7 +193,7 @@
                     <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide Sales</h6>
+                                <h6 class="mb-0">{{$CabecalhoResponse['3. Digital Currency Name']}}</h6>
                                 <a href="">Show All</a>
                             </div>
                             <canvas id="myChart"></canvas>
@@ -408,13 +408,13 @@
             const myChart = new Chart(ctx2, {
             type: 'line',
             data: {
-                labels:  [1,2,3,4,5,6,7,8,9,10], 
+                labels:  [{{implode(',',array_keys($ArrayValorFechado))}}],
                 datasets: [{
                 label: "Fechamento",
                 type: 'line',
                 backgroundColor: "rgba(50,205,50,0.7)",
                 borderColor: "rgba(33,94,33,0.9)",
-                borderWidth: 2,
+                borderWidth: 1,
                 hoverBackgroundColor: "rgba(35,142,35,0.7)",
                 hoverBorderColor: "rgba(33,94,33,1)",
                 data: [{{implode(',',$ArrayValorFechado)}}]
@@ -423,7 +423,7 @@
                 type: 'line',
                 backgroundColor: "rgba(255,0,0,0.7)",
                 borderColor: "rgba(140,23,23,0.9)",
-                borderWidth: 2,
+                borderWidth: 1,
                 hoverBackgroundColor: "rgba(140,23,23,0.9)",
                 hoverBorderColor: "rgba(140,23,23,1)",
                 data: [{{implode(',',$ArrayMaisBaixo)}}]
@@ -432,7 +432,7 @@
                 type: 'line',
                 backgroundColor: "rgba(56,176,222,0.8)",
                 borderColor: "rgba(56,176,222,0.9)",
-                borderWidth: 2,
+                borderWidth: 1,
                 hoverBackgroundColor: "rgba(56,176,222,0.9)",
                 hoverBorderColor: "rgba(56,176,222,1)",
                 data: [{{implode(',',$ArrayMaisAlto)}}]
@@ -441,7 +441,7 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 },
 
