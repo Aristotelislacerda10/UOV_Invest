@@ -45,8 +45,9 @@ class InvestController extends Controller
 
          $ObjectResponse       = json_decode($response, true);
          $ObjectResponseTotais = json_decode($responseTotais, true);
+         $ObjectResponseTotais = $ObjectResponseTotais["Realtime Currency Exchange Rate"];
 
-        // dd($ObjectResponseTotais);
+       //  dd($ObjectResponseTotais);
 
         $CabecalhoResponse = $ObjectResponse["Meta Data"];
         $CotacaoResponse   = $ObjectResponse["Time Series Crypto (30min)"];
@@ -64,7 +65,7 @@ class InvestController extends Controller
         }
         //dd(implode(',',$HoraCotacao));
           return view('invest.ConsultaBolsa',compact('CotacaoResponse','ArrayValorFechado',
-                        'ArrayMaisAlto','ArrayMaisBaixo','CabecalhoResponse','HoraCotacao'));
+                      'ArrayMaisAlto','ArrayMaisBaixo','CabecalhoResponse','HoraCotacao','ObjectResponseTotais'));
         
       }
 }

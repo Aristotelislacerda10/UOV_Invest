@@ -150,8 +150,8 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Valor atual</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Moeda</p>
+                                <h6 class="mb-0">{{$ObjectResponseTotais['2. From_Currency Name']}}</h6>
                             </div>
                         </div>
                     </div>
@@ -159,8 +159,8 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Valor Anterior</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Valor ofertado</p>
+                                <h6 class="mb-0">{{number_format($ObjectResponseTotais['8. Bid Price'], 2, ',', '.')}}</h6>
                             </div>
                         </div>
                     </div>
@@ -168,8 +168,8 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Taxa de câmbio</p>
+                                <h6 class="mb-0">{{number_format($ObjectResponseTotais['5. Exchange Rate'], 2, ',', '.')}}</h6>
                             </div>
                         </div>
                     </div>
@@ -177,8 +177,8 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">data atualização</p>
+                                <h6 class="mb-0">{{date('Y-m-d H:i:s',  strtotime($ObjectResponseTotais['6. Last Refreshed']))}}</h6>
                             </div>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>                       
+                    </div>  
                 </div>                
             </div>
             <!-- Recent Sales End -->
@@ -425,7 +425,7 @@
                 type: 'line',
                 backgroundColor: "rgba(50,205,50,0.7)",
                 borderColor: "rgba(50,205,50,0.7)",
-                borderWidth: 3,
+                borderWidth: 2,
                 pointRadius: 0,
                 hoverBackgroundColor: "rgba(35,142,35,0.7)",
                 hoverBorderColor: "rgba(33,94,33,1)",
