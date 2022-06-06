@@ -193,7 +193,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">{{$CabecalhoResponse['3. Digital Currency Name']}}</h6>
+                                <h6 class="mb-0">cotação diária da moeda</h6>
                                 <a href="">Expandir</a>
                             </div>
                             <canvas id="myChart"></canvas>
@@ -204,10 +204,10 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">{{$CabecalhoResponse['3. Digital Currency Name']}}</h6>
+                                <h6 class="mb-0">Cotação da moeda em 2 anos</h6>
                                 <a href="">Expandir</a>
                             </div>
-                            <canvas id="myChart"></canvas>
+                            <canvas id="myChartAnual"></canvas>
                         
                         </div>
                     </div>
@@ -447,6 +447,40 @@
             }
             }
         });
+
+        const ctx3 = document.getElementById('myChartAnual').getContext('2d');
+            const myChartAnual = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels:  [{{implode(',',array_keys($ArrayValorAnual))}}],
+                datasets: [{
+                label: "Fechamento",
+                type: 'line',
+                backgroundColor: "rgba(50,205,50,0.7)",
+                borderColor: "rgba(50,205,50,0.7)",
+                borderWidth: 2,
+                pointRadius: 0,
+                hoverBackgroundColor: "rgba(35,142,35,0.7)",
+                hoverBorderColor: "rgba(33,94,33,1)",
+                data: [{{implode(',',$ArrayValorAnual)}}],
+            }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                },
+
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'cotação em 2 anos'
+                },
+            }
+            }
+        });
+
        });
      </script>
 </body>
