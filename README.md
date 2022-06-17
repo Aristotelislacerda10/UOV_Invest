@@ -13,6 +13,8 @@ UOV Invest é um sistema básico que fornece dados do mercado financeiro (Crypto
 
 site da documentação da API: [Alpha Vantage](https://www.alphavantage.co/documentation/)
 
+![descrição da imagem](https://raw.githubusercontent.com/Aristotelislacerda10/UOV_Invest/master/public/img/page_usa_o_void_invest.PNG)
+
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
